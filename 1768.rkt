@@ -1,0 +1,10 @@
+(define/contract (merge-alternately word1 word2)
+  (-> string? string? string?)
+    (list->string (merge-list-alternately (string->list word1) (string->list word2)))
+  )
+
+(define (merge-list-alternately wl1 wl2)
+    (cond ((empty? wl1) wl2)
+          ((empty? wl2) wl1)
+          (else (cons (car wl1) (cons (car wl2) (merge-list-alternately (cdr wl1) (cdr wl2))))))
+)
